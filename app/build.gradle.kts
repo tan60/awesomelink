@@ -33,6 +33,14 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    viewBinding {
+        enable = true
+    }
+
+    dataBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -43,6 +51,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation("org.jsoup:jsoup:1.14.3")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
