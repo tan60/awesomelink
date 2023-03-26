@@ -69,7 +69,10 @@ class AddLinkFragment : Fragment() {
     }
 
     private suspend fun parseLink(url: String) = withContext(Dispatchers.IO) {
-        val linkEntity = AddLinkUseCase(RemoteService()).parseLink(binding.etAddLink.text.toString())
-        Log.d("TST", "${linkEntity?.title}, ${linkEntity?.content}")
+        viewModel.isParsing.set(true)
+        viewModel.isShowEditText.set(false)
+        AddLinkUseCase(RemoteService()).parseLink(binding.etAddLink.text.toString())?.let {
+            viewModel.updateLink(it.title, it.content, it.imageUrl)
+        }
     }
 }
